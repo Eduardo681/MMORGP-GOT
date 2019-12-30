@@ -1,0 +1,26 @@
+<div id="pergaminhos">					
+	<h3>Pergaminhos</h3>
+	
+	<ul>
+		<%acoes.forEach(element => { %>
+			<%
+			let txt_acao = '';
+			switch (parseInt(element.acao)) {
+				case 1:  txt_acao = "aldeão(ões) coletando recursos"; break;
+				case 2:  txt_acao = "enforcamento(s) programado"; break;
+				case 3:  txt_acao = "aldeão(ões) em treinamento de história";  break;
+				case 4:  txt_acao = "aldeão(ões) em treinamento de magia";  break;
+			}
+			let date = new Date();
+			let segundos = (element.termino - date.getTime())/1000;
+			%>
+			<li><%=element.qtd%> <%=txt_acao%>  
+				<small>restam <span class="tempo_restante"><%=Math.round(segundos)%></span> segundos - 
+					<a href="/revogar?id=<%=element._id%>">revogar ordem</a>
+				</small>
+			</li>
+		<%});%>	
+			
+		
+	</ul>
+</div>
